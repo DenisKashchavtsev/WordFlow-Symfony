@@ -2,34 +2,34 @@
 
 namespace App\Repository;
 
-use App\Entity\Word;
+use App\Entity\Synonym;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Word>
+ * @extends ServiceEntityRepository<Synonym>
  *
- * @method Word|null find($id, $lockMode = null, $lockVersion = null)
- * @method Word|null findOneBy(array $criteria, array $orderBy = null)
- * @method Word[]    findAll()
- * @method Word[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Synonym|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Synonym|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Synonym[]    findAll()
+ * @method Synonym[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class WordRepository extends ServiceEntityRepository
+class SynonymRepository extends ServiceEntityRepository
 {
     /**
      * @param ManagerRegistry $registry
      */
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Word::class);
+        parent::__construct($registry, Synonym::class);
     }
 
     /**
-     * @param Word $entity
+     * @param Synonym $entity
      * @param bool $flush
      * @return void
      */
-    public function add(Word $entity, bool $flush = false): void
+    public function add(Synonym $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -39,11 +39,11 @@ class WordRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param Word $entity
+     * @param Synonym $entity
      * @param bool $flush
      * @return void
      */
-    public function remove(Word $entity, bool $flush = false): void
+    public function remove(Synonym $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -53,24 +53,24 @@ class WordRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Word[] Returns an array of Word objects
+//     * @return Synonym[] Returns an array of Synonym objects
 //     */
 //    public function findByExampleField($value): array
 //    {
-//        return $this->createQueryBuilder('w')
-//            ->andWhere('w.exampleField = :val')
+//        return $this->createQueryBuilder('s')
+//            ->andWhere('s.exampleField = :val')
 //            ->setParameter('val', $value)
-//            ->orderBy('w.id', 'ASC')
+//            ->orderBy('s.id', 'ASC')
 //            ->setMaxResults(10)
 //            ->getQuery()
 //            ->getResult()
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Word
+//    public function findOneBySomeField($value): ?Synonym
 //    {
-//        return $this->createQueryBuilder('w')
-//            ->andWhere('w.exampleField = :val')
+//        return $this->createQueryBuilder('s')
+//            ->andWhere('s.exampleField = :val')
 //            ->setParameter('val', $value)
 //            ->getQuery()
 //            ->getOneOrNullResult()

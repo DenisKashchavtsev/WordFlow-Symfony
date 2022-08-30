@@ -16,11 +16,19 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class SetRepository extends ServiceEntityRepository
 {
+    /**
+     * @param ManagerRegistry $registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Set::class);
     }
 
+    /**
+     * @param Set $entity
+     * @param bool $flush
+     * @return void
+     */
     public function add(Set $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
@@ -30,6 +38,11 @@ class SetRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * @param Set $entity
+     * @param bool $flush
+     * @return void
+     */
     public function remove(Set $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);

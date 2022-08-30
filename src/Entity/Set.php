@@ -29,16 +29,26 @@ class Set
         $this->words = new ArrayCollection();
     }
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return string|null
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
+    /**
+     * @param string $name
+     * @return $this
+     */
     public function setName(string $name): self
     {
         $this->name = $name;
@@ -54,6 +64,10 @@ class Set
         return $this->words;
     }
 
+    /**
+     * @param Word $word
+     * @return $this
+     */
     public function addWord(Word $word): self
     {
         if (!$this->words->contains($word)) {
@@ -63,6 +77,10 @@ class Set
         return $this;
     }
 
+    /**
+     * @param Word $word
+     * @return $this
+     */
     public function removeWord(Word $word): self
     {
         $this->words->removeElement($word);

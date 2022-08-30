@@ -2,34 +2,34 @@
 
 namespace App\Repository;
 
-use App\Entity\Word;
+use App\Entity\Example;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Word>
+ * @extends ServiceEntityRepository<Example>
  *
- * @method Word|null find($id, $lockMode = null, $lockVersion = null)
- * @method Word|null findOneBy(array $criteria, array $orderBy = null)
- * @method Word[]    findAll()
- * @method Word[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Example|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Example|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Example[]    findAll()
+ * @method Example[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class WordRepository extends ServiceEntityRepository
+class ExampleRepository extends ServiceEntityRepository
 {
     /**
      * @param ManagerRegistry $registry
      */
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Word::class);
+        parent::__construct($registry, Example::class);
     }
 
     /**
-     * @param Word $entity
+     * @param Example $entity
      * @param bool $flush
      * @return void
      */
-    public function add(Word $entity, bool $flush = false): void
+    public function add(Example $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -39,11 +39,11 @@ class WordRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param Word $entity
+     * @param Example $entity
      * @param bool $flush
      * @return void
      */
-    public function remove(Word $entity, bool $flush = false): void
+    public function remove(Example $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -53,24 +53,24 @@ class WordRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Word[] Returns an array of Word objects
+//     * @return Example[] Returns an array of Example objects
 //     */
 //    public function findByExampleField($value): array
 //    {
-//        return $this->createQueryBuilder('w')
-//            ->andWhere('w.exampleField = :val')
+//        return $this->createQueryBuilder('e')
+//            ->andWhere('e.exampleField = :val')
 //            ->setParameter('val', $value)
-//            ->orderBy('w.id', 'ASC')
+//            ->orderBy('e.id', 'ASC')
 //            ->setMaxResults(10)
 //            ->getQuery()
 //            ->getResult()
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Word
+//    public function findOneBySomeField($value): ?Example
 //    {
-//        return $this->createQueryBuilder('w')
-//            ->andWhere('w.exampleField = :val')
+//        return $this->createQueryBuilder('e')
+//            ->andWhere('e.exampleField = :val')
 //            ->setParameter('val', $value)
 //            ->getQuery()
 //            ->getOneOrNullResult()
