@@ -4,16 +4,18 @@ declare(strict_types=1);
 
 namespace App\Users\Domain\Entity;
 
-class User
+use App\Shared\Domain\Security\AuthUserInterface;
+use App\Users\Domain\Service\UserPasswordHasherInterface;
+
+class User implements AuthUserInterface
 {
     private ?int $id = null;
     private string $email;
-    private string $password;
+    private ?string $password;
 
-    public function __construct(string $email, string $password)
+    public function __construct(string $email)
     {
         $this->email = $email;
-        $this->password = $password;
     }
 
     public function getId(): ?int
@@ -26,8 +28,50 @@ class User
         return $this->email;
     }
 
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
+    }
+
+    public function setPassword(
+        ?string                     $password,
+        UserPasswordHasherInterface $passwordHasher
+    ): void
+    {
+        if (is_null($password)) {
+            $this->password = null;
+        }
+
+        $this->password = $passwordHasher->hash($this, $password);
+    }
+
+    public function getRoles()
+    {
+        return ['ROLE_USER'];
+    }
+
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+
+    public function getUsername()
+    {
+        // TODO: Implement getUsername() method.
+    }
+
+    public function __call(string $name, array $arguments)
+    {
+        // TODO: Implement @method string getUserIdentifier()
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return $this->email;
     }
 }
