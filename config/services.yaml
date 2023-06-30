@@ -24,6 +24,10 @@ services:
         App\Shared\Application\Query\QueryHandlerInterface:
             tags:
                 - { name: messenger.message_handler, bus: query.bus }
+                  
+        App\Shared\Domain\Event\EventHandlerInterface:
+            tags:
+                - { name: messenger.message_handler, bus: event.bus }
 
     App\Users\Infrastructure\Controller\:
         resource: '../src/Users/Infrastructure/Controller/'

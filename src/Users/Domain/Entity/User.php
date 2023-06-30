@@ -5,20 +5,22 @@ declare(strict_types=1);
 namespace App\Users\Domain\Entity;
 
 use App\Shared\Domain\Security\AuthUserInterface;
+use App\Shared\Domain\Service\UlidService;
 use App\Users\Domain\Service\UserPasswordHasherInterface;
 
 class User implements AuthUserInterface
 {
-    private ?int $id = null;
+    private string $id;
     private string $email;
     private ?string $password;
 
     public function __construct(string $email)
     {
+        $this->id = UlidService::generate();
         $this->email = $email;
     }
 
-    public function getId(): ?int
+    public function getId(): string
     {
         return $this->id;
     }
@@ -45,7 +47,7 @@ class User implements AuthUserInterface
         $this->password = $passwordHasher->hash($this, $password);
     }
 
-    public function getRoles()
+    public function getRoles(): array
     {
         return ['ROLE_USER'];
     }
