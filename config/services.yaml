@@ -32,3 +32,7 @@ services:
     App\Users\Infrastructure\Controller\:
         resource: '../src/Users/Infrastructure/Controller/'
         tags: [ 'controller.service_arguments' ]
+
+    App\Words\Application\Controller\:
+        resource: '../src/Words/Application/Controller/'
+        tags: [ 'controller.service_arguments' ]

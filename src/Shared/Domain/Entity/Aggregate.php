@@ -18,7 +18,7 @@ abstract class Aggregate
         return $events;
     }
 
-    protected function raise(EventInterface $event): void
+    protected function raiseEvent(EventInterface $event): void
     {
         $this->events[] = $event;
     }

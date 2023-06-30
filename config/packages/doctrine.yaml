@@ -16,6 +16,13 @@ doctrine:
                 prefix: 'App\Users\Domain\Entity'
                 alias: Users
 
+            Words:
+                is_bundle: false
+                type: xml
+                dir: '%kernel.project_dir%/src/Words/Infrastructure/Database/ORM'
+                prefix: 'App\Words\Domain\Entity'
+                alias: Words
+
 #when@test:
 #    doctrine:
 #        dbal:

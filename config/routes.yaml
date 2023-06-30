@@ -15,3 +15,7 @@ api_login_check:
 users:
   resource: ../src/Users/Infrastructure/Controller/
   type: annotation
+
+words:
+  resource: ../src/Words/Application/Controller/
+  type: annotation

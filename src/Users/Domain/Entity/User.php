@@ -52,7 +52,7 @@ class User implements AuthUserInterface
         return ['ROLE_USER'];
     }
 
-    public function getSalt()
+    public function getSalt(): ?string
     {
         // TODO: Implement getSalt() method.
     }
@@ -62,7 +62,7 @@ class User implements AuthUserInterface
         // TODO: Implement eraseCredentials() method.
     }
 
-    public function getUsername()
+    public function getUsername(): ?string
     {
         // TODO: Implement getUsername() method.
     }
