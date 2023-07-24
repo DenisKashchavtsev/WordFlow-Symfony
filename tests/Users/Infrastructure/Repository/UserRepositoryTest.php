@@ -28,9 +28,10 @@ class UserRepositoryTest extends AbstractRepositoryTest
 
     public function test_user_added_successfully(): void
     {
+        $name = $this->faker->name();
         $email = $this->faker->email();
         $password = $this->faker->password();
-        $user = $this->userFactory->create($email, $password);
+        $user = $this->userFactory->create($name, $email, $password);
 
         // act
         $this->repository->add($user);
@@ -38,18 +39,4 @@ class UserRepositoryTest extends AbstractRepositoryTest
         $existingUser = $this->repository->find($user->getId());
         $this->assertEquals($existingUser->getId(), $user->getId());
     }
-//
-//    public function test_user_found_successfully(): void
-//    {
-//        // arrange
-//        $executor = $this->databaseTool->loadFixtures([UserFixture::class]);
-//        /** @var User $user */
-//        $user = $executor->getReferenceRepository()->getReference(UserFixture::REFERENCE);
-//
-//        // act
-//        $existingUser = $this->repository->findByUlid($user->getId());
-//
-//        // assert
-//        $this->assertEquals($user->getId(), $existingUser->getId());
-//    }
 }

@@ -21,10 +21,11 @@ class UserFixture extends Fixture
 
     public function load(ObjectManager $manager): void
     {
+        $name = $this->getFaker()->name();
         $email = $this->getFaker()->email();
-
         $password = $this->getFaker()->password();
-        $user = $this->userFactory->create($email, $password);
+
+        $user = $this->userFactory->create($name, $email, $password);
 
         $manager->persist($user);
         $manager->flush();

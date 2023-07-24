@@ -13,7 +13,7 @@
         "doctrine/orm": "^2.15",
         "gesdinet/jwt-refresh-token-bundle": "1.0.*",
         "lexik/jwt-authentication-bundle": "^2.19",
-        "nelmio/cors-bundle": "^2.2",
+        "nelmio/cors-bundle": "^2.3",
         "phpdocumentor/reflection-docblock": "^5.3",
         "phpstan/phpdoc-parser": "^1.7",
         "sensio/framework-extra-bundle": "^6.1",
@@ -48,8 +48,9 @@
     "require-dev": {
         "dama/doctrine-test-bundle": "^7.2",
         "doctrine/doctrine-fixtures-bundle": "^3.4",
-        "fakerphp/faker": "^1.23",
         "helmich/phpunit-json-assert": "^3.5",
+        "fakerphp/faker": "^1.23",
+        "liip/test-fixtures-bundle": "^2.0.0",
         "phpunit/phpunit": "^9.5",
         "symfony/browser-kit": "5.4.*",
         "symfony/css-selector": "5.4.*",
@@ -57,8 +58,7 @@
         "symfony/maker-bundle": "^1.0",
         "symfony/phpunit-bridge": "^6.1",
         "symfony/stopwatch": "5.4.*",
-        "symfony/web-profiler-bundle": "5.4.*",
-        "liip/test-fixtures-bundle": "^2.0.0"
+        "symfony/web-profiler-bundle": "5.4.*"
     },
     "config": {
         "allow-plugins": {

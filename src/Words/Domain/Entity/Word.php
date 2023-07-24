@@ -4,28 +4,47 @@ namespace App\Words\Domain\Entity;
 
 use App\Shared\Domain\Entity\Aggregate;
 use App\Shared\Domain\Service\UlidService;
-use App\Words\Domain\Event\WordCreatedEvent;
+use App\Words\Domain\Event\Word\WordCreatedEvent;
+use App\Words\Domain\Event\Word\WordUpdatedEvent;
 
 class Word extends Aggregate
 {
-    public string $id;
+    private string $id;
 
-    public function __construct(private readonly string $source, private readonly string $translate)
+    public function __construct(
+        private readonly Category $category,
+        private string            $source,
+        private string            $translate)
     {
         $this->id = UlidService::generate();
     }
 
-    public static function create(string $source, string $translate): self
+    public function create(Category $category, string $source, string $translate): self
     {
-        $word = new self($source, $translate);
+        $word = new self($category, $source, $translate);
         $word->raiseEvent(new WordCreatedEvent($word->id));
 
         return $word;
     }
 
+    public function update(string $source, string $translate): self
+    {
+        $this->source = $source;
+        $this->translate = $translate;
+
+        $this->raiseEvent(new WordUpdatedEvent($this->id));
+
+        return $this;
+    }
+
     public function getId(): string
     {
         return $this->id;
+    }
+
+    public function getCategory(): Category
+    {
+        return $this->category;
     }
 
     public function getSource(): string
@@ -37,19 +56,4 @@ class Word extends Aggregate
     {
         return $this->translate;
     }
-
-//    public function delete(): void
-//    {
-//        // Отправить событие об удалении категории слов
-//        $this->raiseEvent(new WordCategoryDeleted($this->id));
-//    }
-//
-//    private function raiseEvent($event): void
-//    {
-//        // Логика для обработки событий агрегата
-//        // Например, публикация события в шине событий
-//
-//        // Пример публикации события в Symfony через сервис EventDispatcher:
-//        // $eventDispatcher->dispatch($event);
-//    }
 }

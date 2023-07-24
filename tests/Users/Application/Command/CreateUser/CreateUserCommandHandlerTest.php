@@ -12,8 +12,8 @@ class CreateUserCommandHandlerTest extends WebTestCase
 {
     use FakerTools;
 
-    private CommandBusInterface $commandBus;
-    private UserRepositoryInterface $userRepository;
+    private ?CommandBusInterface $commandBus;
+    private ?UserRepositoryInterface $userRepository;
 
     public function setUp(): void
     {
@@ -24,13 +24,14 @@ class CreateUserCommandHandlerTest extends WebTestCase
 
     public function test_user_created_successfully(): void
     {
-        $command = new CreateUserCommand($this->getFaker()->email(), $this->getFaker()->password());
+        $command = new CreateUserCommand($this->getFaker()->name(),
+            $this->getFaker()->email(), $this->getFaker()->password());
 
         // act
-        $id = $this->commandBus->execute($command);
+        $userDTO = $this->commandBus->execute($command);
 
         // assert
-        $user = $this->userRepository->find($id);
+        $user = $this->userRepository->find($userDTO->id);
         $this->assertNotEmpty($user);
     }
 }

@@ -7,6 +7,13 @@
         <id name="id" type="string" length="26">
             <generator strategy="NONE"/>
         </id>
+
+        <many-to-one field="category" target-entity="App\Words\Domain\Entity\Category">
+            <join-columns>
+                <join-column name="category_id" referenced-column-name="id"/>
+            </join-columns>
+        </many-to-one>
+
         <field name="source" type="string"/>
         <field name="translate" type="string"/>
     </entity>

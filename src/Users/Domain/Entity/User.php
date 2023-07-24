@@ -13,10 +13,12 @@ class User implements AuthUserInterface
     private string $id;
     private string $email;
     private ?string $password;
+    private string $name;
 
-    public function __construct(string $email)
+    public function __construct(string $name, string $email)
     {
         $this->id = UlidService::generate();
+        $this->name = $name;
         $this->email = $email;
     }
 
@@ -54,7 +56,7 @@ class User implements AuthUserInterface
 
     public function getSalt(): ?string
     {
-        // TODO: Implement getSalt() method.
+        return '';
     }
 
     public function eraseCredentials()
@@ -75,5 +77,10 @@ class User implements AuthUserInterface
     public function getUserIdentifier(): string
     {
         return $this->email;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
     }
 }

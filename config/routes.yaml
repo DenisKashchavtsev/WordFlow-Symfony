@@ -1,5 +1,5 @@
 controllers:
-  resource: ../src/Shared/Infrastructure/Controller/
+  resource: ../src/Shared/Application/Controller/
   type: annotation
 
 kernel:
@@ -13,7 +13,7 @@ api_login_check:
   path: /api/auth/token/login
 
 users:
-  resource: ../src/Users/Infrastructure/Controller/
+  resource: ../src/Users/Application/Controller/
   type: annotation
 
 words:
