@@ -19,7 +19,7 @@ class Word extends Aggregate
         $this->id = UlidService::generate();
     }
 
-    public function create(Category $category, string $source, string $translate): self
+    public static function create(Category $category, string $source, string $translate): self
     {
         $word = new self($category, $source, $translate);
         $word->raiseEvent(new WordCreatedEvent($word->id));

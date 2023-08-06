@@ -12,14 +12,19 @@ class Category extends Aggregate
     private string $id;
     private array $words = [];
 
-    public function __construct(private readonly string $userId, private string $name)
+    public function __construct(
+        private readonly string  $userId,
+        private string           $name,
+        private readonly ?string $image,
+        private readonly bool    $isPublic = false
+    )
     {
         $this->id = UlidService::generate();
     }
 
-    public static function create(string $userId, string $name): self
+    public static function create(string $userId, string $name, string $image, bool $isPublic): self
     {
-        $wordCategory = new self($userId, $name);
+        $wordCategory = new self($userId, $name, $image, $isPublic);
 
         $wordCategory->raiseEvent(new CategoryCreatedEvent($wordCategory->id));
 
@@ -58,5 +63,15 @@ class Category extends Aggregate
     public function setWords(array $words): void
     {
         $this->words = $words;
+    }
+
+    public function getImage(): string
+    {
+        return $this->image;
+    }
+
+    public function isPublic(): bool
+    {
+        return $this->isPublic;
     }
 }

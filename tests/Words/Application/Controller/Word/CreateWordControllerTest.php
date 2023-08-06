@@ -18,11 +18,8 @@ class CreateWordControllerTest extends AbstractControllerTest
 
     public function test_create_word_success(): void
     {
-        $user = $this->loadUserFixture();
-
-        $category = new Category($user->getId(), $this->faker->name());
-        $categoryRepository = static::getContainer()->get(CategoryRepository::class);
-        $categoryRepository->add($category);
+        $this->loadUserFixture();
+        $category = $this->loadCategoryFixture();
 
         $this->client->request(
             'POST',

@@ -17,10 +17,7 @@ class CreateLearningHistoryControllerTest extends AbstractControllerTest
     public function test_create_learning_history_success(): void
     {
         $user = $this->loadUserFixture();
-
-        $category = new Category($user->getId(), $this->faker->name());
-        $categoryRepository = static::getContainer()->get(CategoryRepository::class);
-        $categoryRepository->add($category);
+        $category = $this->loadCategoryFixture();
 
         $word = new Word($category, 'apple', 'яблоко');
         $wordRepository = static::getContainer()->get(WordRepository::class);

@@ -17,15 +17,9 @@ class UpdateWordControllerTest extends AbstractControllerTest
 {
     public function test_update_word_success(): void
     {
-        $user = $this->loadUserFixture();
-
-        $category = new Category($user->getId(), $this->faker->name());
-        $categoryRepository = static::getContainer()->get(CategoryRepository::class);
-        $categoryRepository->add($category);
-
-        $word = new Word($category, 'apple', 'яблоко');
-        $wordRepository = static::getContainer()->get(WordRepository::class);
-        $wordRepository->add($word);
+        $this->loadUserFixture();
+        $category = $this->loadCategoryFixture();
+        $word = $this->loadWordFixture();
 
         $this->client->request(
             'PUT',

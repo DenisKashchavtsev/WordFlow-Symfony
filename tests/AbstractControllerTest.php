@@ -40,7 +40,6 @@ abstract class AbstractControllerTest extends WebTestCase
             [],
             ['CONTENT_TYPE' => 'application/json'],
             json_encode([
-                'name' => $this->getName(),
                 'email' => $user->getEmail(),
                 'password' => $user->getPassword(),
             ])

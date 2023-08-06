@@ -10,6 +10,8 @@
         <!--        todo require foreign key  -->
         <field name="userId" type="string"/>
         <field name="name" type="string"/>
+        <field name="image" type="string" nullable="true"/>
+        <field name="isPublic" type="boolean" nullable="false" column-definition="BOOLEAN NOT NULL DEFAULT false" />
     </entity>
 
 </doctrine-mapping>
