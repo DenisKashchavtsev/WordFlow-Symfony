@@ -13,5 +13,7 @@ interface AuthUserInterface extends UserInterface, PasswordAuthenticatedUserInte
 
     public function getEmail(): string;
 
+    public function getName(): string;
+
     public function getPassword(): ?string;
 }
