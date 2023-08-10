@@ -2,6 +2,7 @@
 
 namespace App\Words\Infrastructure\Repository;
 
+use App\Shared\Infrastructure\Symfony\Paginator;
 use App\Words\Domain\Entity\Category;
 use App\Words\Domain\Repository\CategoryRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -32,8 +33,17 @@ class CategoryRepository extends ServiceEntityRepository implements CategoryRepo
         $this->_em->flush();
     }
 
-    public function findByUser(string $userId): array
+    /**
+     * @throws \Exception
+     */
+    public function findByUser(string $userId, int $page = 1, int $limit = 25): Paginator
     {
-        return $this->findBy(['userId' => $userId]);
+        $query = $this->_em->createQueryBuilder()
+            ->select('c')
+            ->from(Category::class, 'c')
+            ->where('c.userId = :userId')
+            ->setParameter('userId', $userId);
+
+        return new Paginator($query, $page, $limit);
     }
 }

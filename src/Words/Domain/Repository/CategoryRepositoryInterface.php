@@ -2,6 +2,7 @@
 
 namespace App\Words\Domain\Repository;
 
+use App\Shared\Infrastructure\Symfony\Paginator;
 use App\Words\Domain\Entity\Category;
 
 interface CategoryRepositoryInterface
@@ -12,5 +13,5 @@ interface CategoryRepositoryInterface
 
     public function delete(Category $category): void;
 
-    public function findByUser(string $userId): array;
+    public function findByUser(string $userId): Paginator;
 }

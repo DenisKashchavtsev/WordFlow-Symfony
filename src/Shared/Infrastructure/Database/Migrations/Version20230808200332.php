@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230804211835 extends AbstractMigration
+final class Version20230808200332 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -28,7 +28,7 @@ final class Version20230804211835 extends AbstractMigration
         $this->addSql('CREATE TABLE words_word (id VARCHAR(26) NOT NULL, category_id VARCHAR(26) DEFAULT NULL, source VARCHAR(255) NOT NULL, translate VARCHAR(255) NOT NULL, INDEX IDX_3009CB8112469DE2 (category_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE words_learning_history ADD CONSTRAINT FK_2EDF2C13E357438D FOREIGN KEY (word_id) REFERENCES words_word (id)');
         $this->addSql('ALTER TABLE words_learning_session ADD CONSTRAINT FK_D921898C12469DE2 FOREIGN KEY (category_id) REFERENCES words_category (id)');
-        $this->addSql('ALTER TABLE words_word ADD CONSTRAINT FK_3009CB8112469DE2 FOREIGN KEY (category_id) REFERENCES words_category (id)');
+        $this->addSql('ALTER TABLE words_word ADD CONSTRAINT FK_3009CB8112469DE2 FOREIGN KEY (category_id) REFERENCES words_category (id) ON DELETE CASCADE');
     }
 
     public function down(Schema $schema): void

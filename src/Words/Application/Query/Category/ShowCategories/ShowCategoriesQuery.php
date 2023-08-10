@@ -6,7 +6,7 @@ use App\Shared\Application\Query\QueryInterface;
 
 class ShowCategoriesQuery implements QueryInterface
 {
-    public function __construct()
+    public function __construct(public string $page)
     {
     }
 }

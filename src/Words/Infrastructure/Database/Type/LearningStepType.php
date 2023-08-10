@@ -14,9 +14,9 @@ class LearningStepType extends Type
         return $value->getValue();
     }
 
-    public function convertToPHPValue(mixed $step, AbstractPlatform $platform)
+    public function convertToPHPValue($value, AbstractPlatform $platform): mixed
     {
-        return $step->value;
+        return $value->value;
     }
 
     public function getName(): string
