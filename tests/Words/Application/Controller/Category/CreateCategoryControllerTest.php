@@ -18,7 +18,7 @@ class CreateCategoryControllerTest extends AbstractControllerTest
             [],
             ['CONTENT_TYPE' => 'application/json'],
             json_encode([
-                'name' => $this->faker->name(),
+                'name' => $this->faker->title(),
             ])
         );
 

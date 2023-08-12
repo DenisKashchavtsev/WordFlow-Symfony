@@ -28,18 +28,21 @@ class ShowCategoriesControllerTest extends AbstractControllerTest
         $response = $this->client->getResponse()->getContent();
 
         $this->assertJsonDocumentMatchesSchema($response, [
-            'type' => 'array',
+            'type' => 'object',
         ]);
 
         $this->assertEquals(json_decode($response, true),
-            [[
-                'id' => $category->getId(),
-                'name' => $category->getName(),
-                'userId' => $category->getUserId(),
-                'words' => [],
-                'image' => $category->getImage(),
-                'public' => $category->isPublic()
-            ]]);
+            [
+                'totalPages' => 1,
+                'resultCount' => 1,
+                'data' => [[
+                    'id' => $category->getId(),
+                    'name' => $category->getName(),
+                    'userId' => $category->getUserId(),
+                    'words' => [],
+                    'image' => $category->getImage(),
+                    'public' => $category->isPublic()
+                ]]]);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
     }
