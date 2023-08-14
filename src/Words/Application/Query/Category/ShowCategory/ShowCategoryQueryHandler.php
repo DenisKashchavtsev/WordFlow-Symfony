@@ -28,8 +28,6 @@ class ShowCategoryQueryHandler implements QueryHandlerInterface
             throw new Exception('Category not found');
         }
 
-        $category->setWords($this->wordRepository->getWordsByCategory($category->getId()));
-
         return CategoryDTO::fromEntity($category);
     }
 }

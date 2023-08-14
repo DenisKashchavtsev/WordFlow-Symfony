@@ -6,13 +6,13 @@ use App\Words\Domain\Entity\Category;
 
 class CategoryDTO
 {
-    public function __construct(public readonly string $id, public readonly string $name, public readonly array $words)
+    public function __construct(public readonly string $id, public readonly string $name)
     {
     }
 
     public static function fromEntity(Category $category): CategoryDTO
     {
-        return new self($category->getId(), $category->getName(), $category->getWords());
+        return new self($category->getId(), $category->getName());
     }
 
 }

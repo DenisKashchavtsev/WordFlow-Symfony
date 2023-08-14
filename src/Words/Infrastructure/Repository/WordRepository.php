@@ -2,6 +2,7 @@
 
 namespace App\Words\Infrastructure\Repository;
 
+use App\Shared\Infrastructure\Symfony\Paginator;
 use App\Words\Domain\Entity\Category;
 use App\Words\Domain\Entity\LearningHistory;
 use App\Words\Domain\Entity\LearningStep;
@@ -17,18 +18,19 @@ class WordRepository extends ServiceEntityRepository implements WordRepositoryIn
         parent::__construct($registry, Word::class);
     }
 
-    public function getWordsByCategory(string $categoryId, int $page = 1, int $limit = 10): array
+    /**
+     * @throws \Exception
+     */
+    public function getWordsByCategory(string $categoryId, int $page = 1, int $limit = 25): Paginator
     {
-        return $this->_em->createQueryBuilder()
+        $query = $this->_em->createQueryBuilder()
             ->select('w')
             ->from(Word::class, 'w')
             ->join(Category::class, 'c')
             ->andWhere('c.id = :categoryId')
-            ->setParameter('categoryId', $categoryId)
-            ->setFirstResult(($page - 1) * $limit)
-            ->setMaxResults($limit)
-            ->getQuery()
-            ->getArrayResult();
+            ->setParameter('categoryId', $categoryId);
+
+        return new Paginator($query, $page, $limit);
     }
 
     public function getWordsForLearning(string $categoryId, int $limit = 10): array
