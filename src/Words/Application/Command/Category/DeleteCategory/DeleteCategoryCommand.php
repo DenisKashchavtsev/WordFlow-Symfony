@@ -6,7 +6,7 @@ use App\Shared\Application\Command\CommandInterface;
 
 class DeleteCategoryCommand implements CommandInterface
 {
-    public function __construct(public readonly string $id)
+    public function __construct(public readonly array $ids)
     {
     }
 }

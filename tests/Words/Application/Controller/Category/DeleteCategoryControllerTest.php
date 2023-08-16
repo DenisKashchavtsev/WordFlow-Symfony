@@ -25,4 +25,23 @@ class DeleteCategoryControllerTest extends AbstractControllerTest
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
     }
+
+    public function test_delete_some_category_success(): void
+    {
+        $this->loadUserFixture();
+        $category = $this->loadCategoryFixture();
+
+        $this->client->request(
+            'DELETE',
+            '/api/word-categories',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
+            json_encode(['ids' => [
+                $category->getId(),
+            ]]),
+        );
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
+    }
 }

@@ -13,10 +13,12 @@ class DeleteWordCommandHandler implements CommandHandlerInterface
 
     public function __invoke(DeleteWordCommand $deleteWordCommand)
     {
-        $word = $this->wordRepository->find($deleteWordCommand->id);
+        foreach ($deleteWordCommand->ids as $id) {
+            $word = $this->wordRepository->find($id);
 
-        if ($word) {
-            $this->wordRepository->delete($word);
+            if ($word) {
+                $this->wordRepository->delete($word);
+            }
         }
 
         return null;

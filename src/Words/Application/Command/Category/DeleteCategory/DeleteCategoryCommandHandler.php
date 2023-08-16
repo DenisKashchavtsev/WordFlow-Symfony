@@ -13,10 +13,12 @@ class DeleteCategoryCommandHandler implements CommandHandlerInterface
 
     public function __invoke(DeleteCategoryCommand $deleteCategoryCommand)
     {
-        $category = $this->categoryRepository->find($deleteCategoryCommand->id);
+        foreach ($deleteCategoryCommand->ids as $id) {
+            $category = $this->categoryRepository->find($id);
 
-        if ($category) {
-            $this->categoryRepository->delete($category);
+            if ($category) {
+                $this->categoryRepository->delete($category);
+            }
         }
 
         return null;
