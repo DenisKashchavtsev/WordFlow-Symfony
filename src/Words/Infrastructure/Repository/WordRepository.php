@@ -26,8 +26,7 @@ class WordRepository extends ServiceEntityRepository implements WordRepositoryIn
         $query = $this->_em->createQueryBuilder()
             ->select('w')
             ->from(Word::class, 'w')
-            ->join(Category::class, 'c')
-            ->andWhere('c.id = :categoryId')
+            ->where('w.category = :categoryId')
             ->setParameter('categoryId', $categoryId);
 
         return new Paginator($query, $page, $limit);
