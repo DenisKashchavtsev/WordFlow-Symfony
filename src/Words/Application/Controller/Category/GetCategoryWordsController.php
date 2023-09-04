@@ -16,7 +16,8 @@ class GetCategoryWordsController extends AbstractController
     {
         $query = new GetCategoryWordsQuery($request->get('id'), $request->get('page') ?? 1);
 
-        $words = $this->serializer->serialize($this->queryBus->execute($query), 'json');
+        $words = $this->serializer->serialize($this->queryBus->execute($query), 'json',
+            [AbstractNormalizer::IGNORED_ATTRIBUTES => ['category']]);
 
         return new Response($words, Response::HTTP_OK);
     }

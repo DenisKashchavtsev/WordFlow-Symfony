@@ -24,6 +24,7 @@ class GetMeActionTest extends AbstractControllerTest
                 'password' => $user->getPassword(),
             ])
         );
+
         $data = json_decode($this->client->getResponse()->getContent(), true);
 
         $this->client->setServerParameter('HTTP_AUTHORIZATION', sprintf('Bearer %s', $data['token']));
