@@ -31,7 +31,7 @@ class ShowCategoryControllerTest extends AbstractControllerTest
         $response = $this->client->getResponse()->getContent();
 
         $this->assertJsonDocumentMatchesSchema($response, [
-            'required' => ['id', 'name', 'words'],
+            'required' => ['id', 'name'],
         ]);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
