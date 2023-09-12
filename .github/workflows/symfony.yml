@@ -41,6 +41,12 @@ jobs:
       run: |
         mkdir -p data
         touch data/database.sqlite
+    - name: Set up environment variables
+      env:
+        APP_ENV: test
+      run: |
+        echo "APP_ENV=${APP_ENV}" >> $GITHUB_ENV
+        echo "DATABASE_URL=${DATABASE_URL}" >> $GITHUB_ENV
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
         DATABASE_URL: sqlite:///%kernel.project_dir%/data/database.sqlite
