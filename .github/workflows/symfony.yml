@@ -1,52 +1,83 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-name: Symfony
+name: 'Test'
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-permissions:
-  contents: read
+#  pull_request:
 
 jobs:
-  symfony-tests:
+  analyse:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:14
+        ports:
+          - "5432:5432"
+        env:
+          POSTGRES_DB: symfony_db
+          POSTGRES_USER: symfony_user
+          POSTGRES_PASSWORD: symfony_pass
+    env:
+      POSTGRES_DB: symfony
+      POSTGRES_USER: symfony
+      POSTGRES_PASSWORD: symfony
+      DB_HOST: localhost
+      DB_NAME: symfony_db
+      DB_USER: symfony_user
+      DB_PASSWORD: symfony_pass
+      DB_PORT: 5432
     steps:
-    #  To automatically get bug fixes and new Php versions for shivammathur/setup-php,
-    # change this to (see https://github.com/shivammathur/setup-php#bookmark-versioning):
-    # uses: shivammathur/setup-php@v2
-    - uses: shivammathur/setup-php@2cb9b829437ee246e9b3cac53555a39208ca6d28
-      with:
-        php-version: '8.0'
-    - uses: actions/checkout@v3
-    - name: Copy .env.test.local
-      run: php -r "file_exists('.env.test.local') || copy('.env.test', '.env.test.local');"
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v3
-      with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
-    - name: Install Dependencies
-      run: composer install --ignore-platform-reqs -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-    - name: Create Database
-      run: |
-        mkdir -p data
-        touch data/database.sqlite
-    - name: Set up environment variables
-      env:
-        APP_ENV: test
-      run: |
-        echo "APP_ENV=${APP_ENV}" >> $GITHUB_ENV
-    - name: Execute tests (Unit and Feature tests) via PHPUnit
-      env:
-        DATABASE_URL: sqlite:///%kernel.project_dir%/data/database.sqlite
-      run: vendor/bin/phpunit
+      - uses: actions/checkout@v2
+      - name: Build the stack
+        run: composer install
+
+      - name: Run doctrine schema create
+        run: php bin/console doctrine:schema:create
+
+      - name: Run php-cs-fixer
+        run: php ./vendor/bin/php-cs-fixer fix --dry-run --diff
+
+      - name: Run deptrac
+        run: |
+          vendor/bin/deptrac analyze deptrac-layers.yaml
+          vendor/bin/deptrac analyze deptrac-modules.yaml
+
+      - name: Run phpstan
+        run: vendor/bin/phpstan analyse -c phpstan.neon
+
+      - name: Run composer validate
+        run: composer validate --no-check-all --strict
+
+      - name: Run doctrine:schema:validate
+        run: php bin/console doctrine:schema:validate
+
+  test:
+    runs-on: ubuntu-latest
+    needs: analyse
+    services:
+      postgres:
+        image: postgres:14
+        ports:
+          - "5432:5432"
+        env:
+          POSTGRES_DB: symfony_db
+          POSTGRES_USER: symfony_user
+          POSTGRES_PASSWORD: symfony_pass
+    env:
+      POSTGRES_DB: symfony
+      POSTGRES_USER: symfony
+      POSTGRES_PASSWORD: symfony
+      DB_HOST: localhost
+      DB_NAME: symfony_db
+      DB_USER: symfony_user
+      DB_PASSWORD: symfony_pass
+      DB_PORT: 5432
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the stack
+        run: composer install
+
+      - name: Run doctrine schema create
+        run: php bin/console doctrine:schema:create
+
+      - name: Run tests
+        run: php bin/phpunit
