@@ -36,19 +36,21 @@ class WordRepository extends ServiceEntityRepository implements WordRepositoryIn
     {
         return $this->_em->createQueryBuilder()
             ->select('w')
+            ->addSelect('(SELECT MAX(wlh.step) FROM ' . LearningHistory::class . ' wlh WHERE w.id = wlh.word) AS currentStep')
             ->from(Word::class, 'w')
             ->join(Category::class, 'c')
             ->leftJoin(
                 LearningHistory::class,
                 'lh',
                 'WITH',
-                'w.id = lh.word AND lh.step = :finalStep'
+                'w.id = lh.word'
             )
             ->andWhere('c.id = :categoryId')
-            ->andWhere('lh.step is NULL')
+            ->andWhere('lh.step < :maxStep OR lh.step IS NULL')
             ->setParameter('categoryId', $categoryId)
-            ->setParameter('finalStep', LearningStep::WRITE)
+            ->setParameter('maxStep', LearningStep::WRITE)
             ->setMaxResults($limit)
+            ->distinct('w.id')
             ->getQuery()
             ->getArrayResult();
     }

@@ -5,7 +5,6 @@ namespace App\Words\Application\Service;
 use App\Words\Application\DTO\LearningSessionDTO;
 use App\Words\Domain\Entity\LearningSession;
 use App\Words\Domain\Repository\CategoryRepositoryInterface;
-use App\Words\Domain\Repository\LearningRepositoryInterface;
 use App\Words\Domain\Repository\LearningSessionRepositoryInterface;
 use App\Words\Domain\Repository\WordRepositoryInterface;
 

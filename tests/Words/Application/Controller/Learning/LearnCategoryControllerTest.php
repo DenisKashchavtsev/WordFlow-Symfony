@@ -4,11 +4,11 @@ namespace App\Tests\Words\Application\Controller\Learning;
 
 use App\Tests\AbstractControllerTest;
 use App\Tests\Tools\FixtureTools;
-use App\Words\Domain\Entity\Category;
+use App\Words\Domain\Entity\LearningHistory;
+use App\Words\Domain\Entity\LearningStep;
 use App\Words\Domain\Entity\Word;
-use App\Words\Infrastructure\Repository\CategoryRepository;
+use App\Words\Infrastructure\Repository\LearningHistoryRepository;
 use App\Words\Infrastructure\Repository\WordRepository;
-use Faker\Factory;
 use Symfony\Component\HttpFoundation\Response;
 
 class LearnCategoryControllerTest extends AbstractControllerTest
@@ -23,6 +23,10 @@ class LearnCategoryControllerTest extends AbstractControllerTest
         $word = new Word($category, 'apple', 'яблоко');
         $wordRepository = static::getContainer()->get(WordRepository::class);
         $wordRepository->add($word);
+
+        $learningHistory = new LearningHistory($user->getId(), $word, LearningStep::CHOOSE_CORRECT_OPTION);
+        $learningHistoryRepository = static::getContainer()->get(LearningHistoryRepository::class);
+        $learningHistoryRepository->add($learningHistory);
 
         $this->auth($user);
 
