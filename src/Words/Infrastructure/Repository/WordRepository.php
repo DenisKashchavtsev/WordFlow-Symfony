@@ -35,7 +35,7 @@ class WordRepository extends ServiceEntityRepository implements WordRepositoryIn
     public function getWordsForLearning(string $categoryId, int $limit = 10): array
     {
         return $this->_em->createQueryBuilder()
-            ->select('w')
+            ->select('w.id, w.source, w.translate')
             ->addSelect('(SELECT MAX(wlh.step) FROM ' . LearningHistory::class . ' wlh WHERE w.id = wlh.word) AS currentStep')
             ->from(Word::class, 'w')
             ->join(Category::class, 'c')
