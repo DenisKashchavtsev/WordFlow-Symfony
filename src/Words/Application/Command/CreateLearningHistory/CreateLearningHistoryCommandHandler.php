@@ -20,16 +20,22 @@ class CreateLearningHistoryCommandHandler implements CommandHandlerInterface
     {
     }
 
-    public function __invoke(CreateLearningHistoryCommand $historyCommand): LearningHistoryDTO
+    public function __invoke(CreateLearningHistoryCommand $historyCommand): array
     {
         $user = $this->userFetcher->getAuthUser();
-        $word = $this->wordRepository->find($historyCommand->wordId);
+        $words = $this->wordRepository->findByIds($historyCommand->wordIds);
+
         $step = $this->findStepService->byValue($historyCommand->step);
 
-        $learningHistory = new LearningHistory($user->getId(), $word, $step);
+        $responseLearningHistories = [];
+        foreach ($words as $word) {
+            $learningHistory = new LearningHistory($user->getId(), $word, $step);
 
-        $this->historyRepository->add($learningHistory);
+            $this->historyRepository->add($learningHistory);
 
-        return LearningHistoryDTO::fromEntity($learningHistory);
+            $responseLearningHistories[] = LearningHistoryDTO::fromEntity($learningHistory);
+        }
+
+        return $responseLearningHistories;
     }
 }

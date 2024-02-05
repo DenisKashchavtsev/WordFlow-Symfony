@@ -23,6 +23,10 @@ class CreateLearningHistoryControllerTest extends AbstractControllerTest
         $wordRepository = static::getContainer()->get(WordRepository::class);
         $wordRepository->add($word);
 
+        $word2 = new Word($category, 'apple2', 'яблоко2');
+        $wordRepository = static::getContainer()->get(WordRepository::class);
+        $wordRepository->add($word2);
+
         $this->auth($user);
 
         $this->client->request(
@@ -32,7 +36,7 @@ class CreateLearningHistoryControllerTest extends AbstractControllerTest
             [],
             ['CONTENT_TYPE' => 'application/json'],
             json_encode([
-                'word_id' => $word->getId(),
+                'word_ids' => [$word->getId(), $word2->getId()],
                 'step' => LearningStep::WRITE
             ])
         );
@@ -40,7 +44,10 @@ class CreateLearningHistoryControllerTest extends AbstractControllerTest
         $response = $this->client->getResponse()->getContent();
 
         $this->assertJsonDocumentMatchesSchema($response, [
-            'required' => ['id', 'userId', 'word', 'learnedAt'],
+            'required' => [
+                ['id', 'userId', 'word', 'learnedAt'],
+                ['id', 'userId', 'word', 'learnedAt']
+            ],
         ]);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_CREATED);

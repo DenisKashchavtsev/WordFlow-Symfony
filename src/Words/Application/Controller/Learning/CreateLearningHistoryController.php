@@ -15,7 +15,7 @@ class CreateLearningHistoryController extends AbstractController
     {
         $data = json_decode($request->getContent(), true);
 
-        $command = new CreateLearningHistoryCommand($data['word_id'], $data['step']);
+        $command = new CreateLearningHistoryCommand($data['word_ids'], $data['step']);
         $category = $this->commandBus->execute($command);
 
         return new JsonResponse($category, 201);

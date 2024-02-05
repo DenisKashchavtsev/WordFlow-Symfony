@@ -15,7 +15,7 @@
             </join-columns>
         </many-to-one>
 
-        <field name="step" type="string" enum-type="App\Words\Domain\Entity\LearningStep"/>
+        <field name="step" type="integer" enum-type="App\Words\Domain\Entity\LearningStep"/>
         <field name="learnedAt" type="date"/>
     </entity>
 

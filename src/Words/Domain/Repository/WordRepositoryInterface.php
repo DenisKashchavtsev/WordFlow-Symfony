@@ -16,4 +16,6 @@ interface WordRepositoryInterface
     public function getWordsByCategory(string $categoryId, int $page = 1, int $limit = 10): Paginator;
 
     public function getWordsForLearning(string $categoryId, int $limit = 10): array;
+
+    public function findByIds(array $wordIds): array;
 }
