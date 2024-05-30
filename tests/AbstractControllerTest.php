@@ -8,6 +8,8 @@ use Faker\Factory;
 use Helmich\JsonAssert\JsonAssertions;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Input\ArrayInput;
 
 abstract class AbstractControllerTest extends WebTestCase
 {

@@ -36,6 +36,9 @@ class Paginator
         return $this->resultCount;
     }
 
+    /**
+     * @throws Exception
+     */
     public function getData(): array
     {
         return $this->ormPaginator->getIterator()->getArrayCopy();

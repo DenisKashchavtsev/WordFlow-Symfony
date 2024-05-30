@@ -36,14 +36,24 @@ class CategoryRepository extends ServiceEntityRepository implements CategoryRepo
     /**
      * @throws \Exception
      */
-    public function findByUser(string $userId, int $page = 1, int $limit = 25): Paginator
+    public function findByUser(string $ownerId, int $page = 1, int $limit = 25): Paginator
     {
         $query = $this->_em->createQueryBuilder()
             ->select('c')
             ->from(Category::class, 'c')
-            ->where('c.userId = :userId')
-            ->setParameter('userId', $userId);
+            ->where('c.ownerId = :ownerId')
+            ->setParameter('ownerId', $ownerId);
 
         return new Paginator($query, $page, $limit);
+    }
+
+    public function getPopular(): Paginator
+    {
+        // TODO: Implement getPopular() method.
+    }
+
+    public function findByName(string $name): Paginator
+    {
+        // TODO: Implement findByName() method.
     }
 }

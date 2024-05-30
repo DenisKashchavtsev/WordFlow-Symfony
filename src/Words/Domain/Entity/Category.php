@@ -11,29 +11,32 @@ class Category extends Aggregate
 {
     private string $id;
     private array $words = [];
+    private array $userIds = [];
 
     public function __construct(
-        private readonly string  $userId,
-        private string           $name,
-        private readonly ?string $image,
-        private readonly bool    $isPublic = false
+        private readonly string $ownerId,
+        private string          $name,
+        private ?string         $image,
+        private bool            $isPublic = false,
     )
     {
         $this->id = UlidService::generate();
     }
 
-    public static function create(string $userId, string $name, string $image, bool $isPublic): self
+    public static function create(string $ownerId, string $name, string $image, bool $isPublic): self
     {
-        $wordCategory = new self($userId, $name, $image, $isPublic);
+        $wordCategory = new self($ownerId, $name, $image, $isPublic);
 
         $wordCategory->raiseEvent(new CategoryCreatedEvent($wordCategory->id));
 
         return $wordCategory;
     }
 
-    public function update(string $name): self
+    public function update(string $name, string $image, bool $isPublic): self
     {
         $this->name = $name;
+        $this->image = $image;
+        $this->isPublic = $isPublic;
 
         $this->raiseEvent(new CategoryUpdatedEvent($this->id));
 
@@ -50,9 +53,9 @@ class Category extends Aggregate
         return $this->name;
     }
 
-    public function getUserId(): string
+    public function getOwnerId(): string
     {
-        return $this->userId;
+        return $this->ownerId;
     }
 
     public function getWords(): array
@@ -70,7 +73,7 @@ class Category extends Aggregate
         return $this->image;
     }
 
-    public function isPublic(): bool
+    public function getIsPublic(): bool
     {
         return $this->isPublic;
     }

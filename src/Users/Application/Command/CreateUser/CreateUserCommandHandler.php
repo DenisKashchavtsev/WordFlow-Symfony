@@ -16,6 +16,7 @@ class CreateUserCommandHandler implements CommandHandlerInterface
     public function __invoke(CreateUserCommand $createUserCommand): UserDTO
     {
         $user = $this->userFactory->create($createUserCommand->name, $createUserCommand->email, $createUserCommand->password);
+
         $this->userRepository->add($user);
 
         return UserDTO::fromEntity($user);

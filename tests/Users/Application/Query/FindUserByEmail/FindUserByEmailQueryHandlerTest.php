@@ -2,7 +2,7 @@
 
 namespace App\Tests\Users\Application\Query\FindUserByEmail;
 use App\Shared\Application\Query\QueryBusInterface;
-use App\Tests\Resource\Fixture\Users\UserFixture;
+use App\Tests\Resource\Fixture\Users\GlobalUserFixture;
 use App\Users\Application\DTO\UserDTO;
 use App\Users\Application\Query\FindUserByEmail\FindUserByEmailQuery;
 use App\Users\Domain\Entity\User;
@@ -25,9 +25,9 @@ class FindUserByEmailQueryHandlerTest extends WebTestCase
     public function test_user_created_when_command_executed(): void
     {
         // arrange
-        $referenceRepository = $this->databaseTool->loadFixtures([UserFixture::class])->getReferenceRepository();
+        $referenceRepository = $this->databaseTool->loadFixtures([GlobalUserFixture::class])->getReferenceRepository();
         /** @var User $user */
-        $user = $referenceRepository->getReference(UserFixture::REFERENCE);
+        $user = $referenceRepository->getReference(GlobalUserFixture::REFERENCE);
         $query = new FindUserByEmailQuery($user->getEmail());
 
         // act

@@ -2,32 +2,32 @@
 
 namespace App\Shared\Infrastructure\ArgumentResolver;
 
+use App\Shared\Application\Exception\ValidationException;
+use App\Shared\Application\Validator\Validator;
 use App\Shared\Infrastructure\Attribute\RequestBody;
-use Generator;
-use PHPUnit\Util\Exception;
+use App\Shared\Infrastructure\Attribute\Valid;
+use App\Shared\Infrastructure\Exception\RequestBodyConvertException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ArgumentValueResolverInterface;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
-use Throwable;
 
 class RequestBodyArgumentResolver implements ArgumentValueResolverInterface
 {
-    public function __construct(private SerializerInterface $serializer, private ValidatorInterface $validator)
+    public function __construct(private readonly SerializerInterface $serializer, private readonly Validator $validator)
     {
     }
 
     public function supports(Request $request, ArgumentMetadata $argument): bool
     {
-        return count($argument->getAttributes(RequestBody::class, ArgumentMetadata::IS_INSTANCEOF)) > 0;
+        return !empty($argument->getAttributes(RequestBody::class, ArgumentMetadata::IS_INSTANCEOF));
     }
 
     /**
      * @throws \Exception
      */
-    public function resolve(Request $request, ArgumentMetadata $argument): Generator
+    public function resolve(Request $request, ArgumentMetadata $argument): \Generator
     {
         try {
             $model = $this->serializer->deserialize(
@@ -35,13 +35,17 @@ class RequestBodyArgumentResolver implements ArgumentValueResolverInterface
                 $argument->getType(),
                 JsonEncoder::FORMAT
             );
-        } catch (Throwable $throwable) {
-            throw new \Exception($throwable);
+        } catch (\Throwable $throwable) {
+            throw new RequestBodyConvertException($throwable);
         }
 
-        $errors = $this->validator->validate($model);
-        if (count($errors) > 0) {
-            throw new Exception($errors);
+        if (!empty($argument->getAttributes(Valid::class, ArgumentMetadata::IS_INSTANCEOF))) {
+
+            $errors = $this->validator->validate($model);
+
+            if (!empty($errors)) {
+                throw new ValidationException($errors);
+            }
         }
 
         yield $model;

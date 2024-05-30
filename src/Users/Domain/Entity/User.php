@@ -66,7 +66,7 @@ class User implements AuthUserInterface
 
     public function getUsername(): ?string
     {
-        // TODO: Implement getUsername() method.
+        return $this->name;
     }
 
     public function __call(string $name, array $arguments)

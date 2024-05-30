@@ -6,8 +6,8 @@ use App\Words\Domain\Entity\Category;
 
 class CategoryFactory
 {
-    public static function create(string $userId, string $name, string $image = '', bool $isPublic = false): Category
+    public static function create(string $owner, string $name, string $image = '', bool $isPublic = false): Category
     {
-        return Category::create($userId, $name, $image, $isPublic);
+        return Category::create($owner, $name, $image, $isPublic);
     }
 }

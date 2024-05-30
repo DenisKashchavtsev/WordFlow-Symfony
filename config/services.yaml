@@ -29,10 +29,18 @@ services:
             tags:
                 - { name: messenger.message_handler, bus: event.bus }
 
-    App\Users\Application\Controller\:
-        resource: '../src/Users/Application/Controller/'
+    App\Shared\Infrastructure\Listener\ValidationExceptionListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception, priority: 15 }
+
+    App\Shared\Infrastructure\Listener\ExceptionListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception, priority: 1 }
+
+    App\Users\Infrastructure\Controller\:
+        resource: '../src/Users/Infrastructure/Controller/'
         tags: [ 'controller.service_arguments' ]
 
-    App\Words\Application\Controller\:
-        resource: '../src/Words/Application/Controller/'
+    App\Words\Infrastructure\Controller\:
+        resource: '../src/Words/Infrastructure/Controller/'
         tags: [ 'controller.service_arguments' ]

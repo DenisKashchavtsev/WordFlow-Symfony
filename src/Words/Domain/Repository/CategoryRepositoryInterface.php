@@ -14,4 +14,8 @@ interface CategoryRepositoryInterface
     public function delete(Category $category): void;
 
     public function findByUser(string $userId): Paginator;
+
+    public function getPopular(): Paginator;
+
+    public function findByName(string $name): Paginator;
 }
