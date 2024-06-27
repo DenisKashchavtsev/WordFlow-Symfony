@@ -3,12 +3,12 @@
                   xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="App\Words\Domain\Entity\Word" table="words_word">
+    <entity name="App\Words\Domain\Aggregate\Word" table="words_word">
         <id name="id" type="string" length="26">
             <generator strategy="NONE"/>
         </id>
 
-        <many-to-one field="category" target-entity="App\Words\Domain\Entity\Category">
+        <many-to-one field="category" target-entity="App\Words\Domain\Aggregate\Category">
             <join-columns>
                 <join-column name="category_id" referenced-column-name="id" on-delete="CASCADE"/>
             </join-columns>

@@ -4,9 +4,9 @@ namespace App\Tests\Words\Application\Controller\Learning;
 
 use App\Tests\AbstractControllerTest;
 use App\Tests\Tools\FixtureTools;
-use App\Words\Domain\Entity\Category;
-use App\Words\Domain\Entity\LearningStep;
-use App\Words\Domain\Entity\Word;
+use App\Words\Domain\Aggregate\Category;
+use App\Words\Domain\Aggregate\LearningStep;
+use App\Words\Domain\Aggregate\Word;
 use App\Words\Infrastructure\Repository\CategoryRepository;
 use App\Words\Infrastructure\Repository\WordRepository;
 use Faker\Factory;

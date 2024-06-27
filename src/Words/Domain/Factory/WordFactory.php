@@ -2,8 +2,8 @@
 
 namespace App\Words\Domain\Factory;
 
-use App\Words\Domain\Entity\Category;
-use App\Words\Domain\Entity\Word;
+use App\Words\Domain\Aggregate\Category;
+use App\Words\Domain\Aggregate\Word;
 
 class WordFactory
 {

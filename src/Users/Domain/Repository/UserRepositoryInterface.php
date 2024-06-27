@@ -2,7 +2,7 @@
 
 namespace App\Users\Domain\Repository;
 
-use App\Users\Domain\Entity\User;
+use App\Users\Domain\Aggregate\User;
 
 interface UserRepositoryInterface
 {

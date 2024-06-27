@@ -4,9 +4,9 @@ namespace App\Tests\Words\Application\Controller\Learning;
 
 use App\Tests\AbstractControllerTest;
 use App\Tests\Tools\FixtureTools;
-use App\Words\Domain\Entity\LearningHistory;
-use App\Words\Domain\Entity\LearningStep;
-use App\Words\Domain\Entity\Word;
+use App\Words\Domain\Aggregate\LearningHistory;
+use App\Words\Domain\Aggregate\LearningStep;
+use App\Words\Domain\Aggregate\Word;
 use App\Words\Infrastructure\Repository\LearningHistoryRepository;
 use App\Words\Infrastructure\Repository\WordRepository;
 use Symfony\Component\HttpFoundation\Response;

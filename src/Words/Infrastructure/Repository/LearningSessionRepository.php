@@ -2,9 +2,9 @@
 
 namespace App\Words\Infrastructure\Repository;
 
-use App\Words\Domain\Entity\Category;
-use App\Words\Domain\Entity\LearningSession;
-use App\Words\Domain\Entity\Word;
+use App\Words\Domain\Aggregate\Category;
+use App\Words\Domain\Aggregate\LearningSession;
+use App\Words\Domain\Aggregate\Word;
 use App\Words\Domain\Repository\LearningRepositoryInterface;
 use App\Words\Domain\Repository\LearningSessionRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;

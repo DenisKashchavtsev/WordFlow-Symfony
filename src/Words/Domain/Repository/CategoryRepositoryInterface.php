@@ -3,7 +3,7 @@
 namespace App\Words\Domain\Repository;
 
 use App\Shared\Infrastructure\Symfony\Paginator;
-use App\Words\Domain\Entity\Category;
+use App\Words\Domain\Aggregate\Category;
 
 interface CategoryRepositoryInterface
 {

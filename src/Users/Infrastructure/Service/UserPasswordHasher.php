@@ -2,7 +2,7 @@
 
 namespace App\Users\Infrastructure\Service;
 
-use App\Users\Domain\Entity\User;
+use App\Users\Domain\Aggregate\User;
 use App\Users\Domain\Service\UserPasswordHasherInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface as BaseUserPasswordHasherInterface;
 

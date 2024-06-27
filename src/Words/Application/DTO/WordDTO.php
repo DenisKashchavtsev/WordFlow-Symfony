@@ -2,7 +2,7 @@
 
 namespace App\Words\Application\DTO;
 
-use App\Words\Domain\Entity\Word;
+use App\Words\Domain\Aggregate\Word;
 
 class WordDTO
 {

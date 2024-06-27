@@ -3,10 +3,10 @@
 namespace App\Words\Infrastructure\Repository;
 
 use App\Shared\Infrastructure\Symfony\Paginator;
-use App\Words\Domain\Entity\Category;
-use App\Words\Domain\Entity\LearningHistory;
-use App\Words\Domain\Entity\LearningStep;
-use App\Words\Domain\Entity\Word;
+use App\Words\Domain\Aggregate\Category;
+use App\Words\Domain\Aggregate\LearningHistory;
+use App\Words\Domain\Aggregate\LearningStep;
+use App\Words\Domain\Aggregate\Word;
 use App\Words\Domain\Repository\WordRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\DBAL\ArrayParameterType;

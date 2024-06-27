@@ -3,19 +3,19 @@
                   xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="App\Words\Domain\Entity\LearningHistory" table="words_learning_history">
+    <entity name="App\Words\Domain\Aggregate\LearningHistory" table="words_learning_history">
         <id name="id" type="string" length="26">
             <generator strategy="NONE"/>
         </id>
         <field name="userId" type="string"/>
 
-        <many-to-one field="word" target-entity="App\Words\Domain\Entity\Word">
+        <many-to-one field="word" target-entity="App\Words\Domain\Aggregate\Word">
             <join-columns>
                 <join-column name="word_id" referenced-column-name="id"/>
             </join-columns>
         </many-to-one>
 
-        <field name="step" type="integer" enum-type="App\Words\Domain\Entity\LearningStep"/>
+        <field name="step" type="integer" enum-type="App\Words\Domain\Aggregate\LearningStep"/>
         <field name="learnedAt" type="date"/>
     </entity>
 

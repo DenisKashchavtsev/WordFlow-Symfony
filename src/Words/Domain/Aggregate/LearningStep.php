@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Words\Domain\Entity;
+namespace App\Words\Domain\Aggregate;
 
 enum LearningStep: int
 {

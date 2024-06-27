@@ -6,7 +6,7 @@ use App\Shared\Application\Command\CommandHandlerInterface;
 use App\Shared\Infrastructure\Security\UserFetcher;
 use App\Words\Application\DTO\LearningHistoryDTO;
 use App\Words\Application\Service\LearningFindStepService;
-use App\Words\Domain\Entity\LearningHistory;
+use App\Words\Domain\Aggregate\LearningHistory;
 use App\Words\Domain\Repository\LearningHistoryRepositoryInterface;
 use App\Words\Domain\Repository\WordRepositoryInterface;
 

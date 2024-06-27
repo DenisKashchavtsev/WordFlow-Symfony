@@ -2,7 +2,7 @@
 
 namespace App\Words\Application\DTO;
 
-use App\Words\Domain\Entity\LearningHistory;
+use App\Words\Domain\Aggregate\LearningHistory;
 use DateTime;
 
 class LearningHistoryDTO

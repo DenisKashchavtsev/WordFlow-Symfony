@@ -5,6 +5,7 @@ namespace App\Tests\Users\Application\Controller;
 use App\Tests\AbstractControllerTest;
 use App\Tests\Tools\FixtureTools;
 use Faker\Factory;
+use Symfony\Component\Messenger\Bridge\Amqp\Transport\AmqpStamp;
 
 class RegistrationControllerTest extends AbstractControllerTest
 {

@@ -1,11 +1,15 @@
 <?php
 
-namespace App\Shared\Domain\Entity;
+namespace App\Shared\Domain\Aggregate;
 
 use App\Shared\Domain\Event\EventInterface;
 
 abstract class Aggregate
 {
+    public function __construct()
+    {
+    }
+
     private array $events = [];
 
     abstract public function getId(): string;
@@ -18,7 +22,7 @@ abstract class Aggregate
         return $events;
     }
 
-    protected function raiseEvent(EventInterface $event): void
+    protected function registerEvent(EventInterface $event): void
     {
         $this->events[] = $event;
     }

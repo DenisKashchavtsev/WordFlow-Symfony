@@ -2,7 +2,7 @@
 
 namespace App\Words\Application\Service;
 
-use App\Words\Domain\Entity\LearningStep;
+use App\Words\Domain\Aggregate\LearningStep;
 use ReflectionClass;
 
 class LearningFindStepService
@@ -14,7 +14,7 @@ class LearningFindStepService
 
         foreach ($constants as $constant) {
             if ($constant->value === intval($value)) {
-                return constant("App\Words\Domain\Entity\LearningStep::$constant->name");
+                return constant("App\Words\Domain\Aggregate\LearningStep::$constant->name");
             }
         }
         return null;

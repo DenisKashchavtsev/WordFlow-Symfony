@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Words\Domain\Entity;
+namespace App\Words\Domain\Aggregate;
 
 use App\Shared\Domain\Service\UlidService;
 use DateTime;

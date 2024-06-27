@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "021a8ba7475e2cd130a528270795f3eb",
+    "content-hash": "60511042d5c79ddfb89465d8acc63b5a",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -2771,16 +2771,16 @@
         },
         {
             "name": "symfony/amqp-messenger",
-            "version": "v5.4.22",
+            "version": "v5.4.40",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/amqp-messenger.git",
-                "reference": "6343af983ba7460f7ea984aacb95d1ed382f6e40"
+                "reference": "9b3e7a7ae8ecd7ddf132a77e13628f3a67307674"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/amqp-messenger/zipball/6343af983ba7460f7ea984aacb95d1ed382f6e40",
-                "reference": "6343af983ba7460f7ea984aacb95d1ed382f6e40",
+                "url": "https://api.github.com/repos/symfony/amqp-messenger/zipball/9b3e7a7ae8ecd7ddf132a77e13628f3a67307674",
+                "reference": "9b3e7a7ae8ecd7ddf132a77e13628f3a67307674",
                 "shasum": ""
             },
             "require": {
@@ -2820,7 +2820,7 @@
             "description": "Symfony AMQP extension Messenger Bridge",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/amqp-messenger/tree/v5.4.22"
+                "source": "https://github.com/symfony/amqp-messenger/tree/v5.4.40"
             },
             "funding": [
                 {
@@ -2836,7 +2836,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-03-10T09:58:14+00:00"
+            "time": "2024-05-31T14:33:22+00:00"
         },
         {
             "name": "symfony/asset",
@@ -11202,5 +11202,5 @@
         "ext-iconv": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }

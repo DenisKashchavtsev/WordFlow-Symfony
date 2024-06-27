@@ -188,4 +188,33 @@ class CategoryControllerTest extends AbstractControllerTest
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
     }
 
+    public function test_list_popular_categories_success(): void
+    {
+        $user = $this->loadUserFixture();
+        $category = $this->loadCategoryFixture();
+        $this->auth($user);
+
+        $this->client->request(
+            'GET',
+            '/api/word-categories',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json']
+        );
+
+        $response = $this->client->getResponse()->getContent();
+
+        $this->assertEquals(json_decode($response, true),
+            [
+                'totalPages' => 1,
+                'resultCount' => 1,
+                'data' => [[
+                    'id' => $category->getId(),
+                    'name' => $category->getName(),
+                    'image' => $category->getImage(),
+                    'isPublic' => $category->getIsPublic(),
+                ]]]);
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+    }
 }

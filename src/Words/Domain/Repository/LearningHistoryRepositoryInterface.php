@@ -2,7 +2,7 @@
 
 namespace App\Words\Domain\Repository;
 
-use App\Words\Domain\Entity\LearningHistory;
+use App\Words\Domain\Aggregate\LearningHistory;
 
 interface LearningHistoryRepositoryInterface
 {

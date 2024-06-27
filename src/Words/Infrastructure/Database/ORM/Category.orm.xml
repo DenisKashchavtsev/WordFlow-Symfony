@@ -3,11 +3,10 @@
                   xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="App\Words\Domain\Entity\Category" table="words_category">
+    <entity name="App\Words\Domain\Aggregate\Category" table="words_category">
         <id name="id" type="string" length="26">
             <generator strategy="NONE"/>
         </id>
-        <!--        todo require foreign key  -->
         <field name="ownerId" type="string"/>
         <field name="name" type="string"/>
         <field name="image" type="string" nullable="true"/>

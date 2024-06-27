@@ -14,14 +14,14 @@ doctrine:
                 is_bundle: false
                 type: xml
                 dir: '%kernel.project_dir%/src/Users/Infrastructure/Database/ORM'
-                prefix: 'App\Users\Domain\Entity'
+                prefix: 'App\Users\Domain\Aggregate'
                 alias: Users
 
             Words:
                 is_bundle: false
                 type: xml
                 dir: '%kernel.project_dir%/src/Words/Infrastructure/Database/ORM'
-                prefix: 'App\Words\Domain\Entity'
+                prefix: 'App\Words\Domain\Aggregate'
                 alias: Words
 
 #when@test:

@@ -2,7 +2,7 @@
 
 namespace App\Words\Application\DTO;
 
-use App\Words\Domain\Entity\LearningSession;
+use App\Words\Domain\Aggregate\LearningSession;
 use DateTime;
 
 class LearningSessionDTO

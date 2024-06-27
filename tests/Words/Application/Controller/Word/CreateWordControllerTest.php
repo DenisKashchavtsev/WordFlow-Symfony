@@ -6,7 +6,7 @@ use App\Shared\Domain\Service\UlidService;
 use App\Shared\Domain\ValueObject\GlobalUserId;
 use App\Tests\AbstractControllerTest;
 use App\Tests\Tools\FixtureTools;
-use App\Words\Domain\Entity\Category;
+use App\Words\Domain\Aggregate\Category;
 use App\Words\Infrastructure\Repository\CategoryRepository;
 use App\Words\Infrastructure\Repository\WordRepository;
 use Faker\Factory;

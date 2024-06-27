@@ -2,7 +2,7 @@
 
 namespace App\Words\Domain\Factory;
 
-use App\Words\Domain\Entity\Category;
+use App\Words\Domain\Aggregate\Category;
 
 class CategoryFactory
 {

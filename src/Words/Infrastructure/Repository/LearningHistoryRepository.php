@@ -2,7 +2,7 @@
 
 namespace App\Words\Infrastructure\Repository;
 
-use App\Words\Domain\Entity\LearningHistory;
+use App\Words\Domain\Aggregate\LearningHistory;
 use App\Words\Domain\Repository\LearningHistoryRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;

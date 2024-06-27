@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Users\Application\Query\FindUserByEmail;
+namespace App\Users\Application\UseCase\Query\FindUserByEmail;
 
 use App\Shared\Application\Query\QueryInterface;
 

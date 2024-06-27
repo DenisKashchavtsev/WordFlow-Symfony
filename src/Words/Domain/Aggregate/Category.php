@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Words\Domain\Entity;
+namespace App\Words\Domain\Aggregate;
 
-use App\Shared\Domain\Entity\Aggregate;
+use App\Shared\Domain\Aggregate\Aggregate;
 use App\Shared\Domain\Service\UlidService;
 use App\Words\Domain\Event\Category\CategoryCreatedEvent;
 use App\Words\Domain\Event\Category\CategoryUpdatedEvent;
@@ -11,7 +11,6 @@ class Category extends Aggregate
 {
     private string $id;
     private array $words = [];
-    private array $userIds = [];
 
     public function __construct(
         private readonly string $ownerId,
@@ -27,7 +26,7 @@ class Category extends Aggregate
     {
         $wordCategory = new self($ownerId, $name, $image, $isPublic);
 
-        $wordCategory->raiseEvent(new CategoryCreatedEvent($wordCategory->id));
+        $wordCategory->registerEvent(new CategoryCreatedEvent($wordCategory->id));
 
         return $wordCategory;
     }
@@ -38,7 +37,7 @@ class Category extends Aggregate
         $this->image = $image;
         $this->isPublic = $isPublic;
 
-        $this->raiseEvent(new CategoryUpdatedEvent($this->id));
+        $this->registerEvent(new CategoryUpdatedEvent($this->id));
 
         return $this;
     }

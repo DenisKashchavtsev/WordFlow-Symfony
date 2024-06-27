@@ -2,13 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Users\Domain\Entity;
+namespace App\Users\Domain\Aggregate;
 
+use App\Shared\Application\Event\EventBusInterface;
+use App\Shared\Domain\Aggregate\Aggregate;
 use App\Shared\Domain\Security\AuthUserInterface;
 use App\Shared\Domain\Service\UlidService;
+use App\Users\Domain\Event\UserCreatedEvent;
 use App\Users\Domain\Service\UserPasswordHasherInterface;
 
-class User implements AuthUserInterface
+class User extends Aggregate implements AuthUserInterface
 {
     private string $id;
     private string $email;
@@ -20,6 +23,8 @@ class User implements AuthUserInterface
         $this->id = UlidService::generate();
         $this->name = $name;
         $this->email = $email;
+
+        $this->registerEvent(new UserCreatedEvent($this->id));
     }
 
     public function getId(): string

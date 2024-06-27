@@ -3,7 +3,7 @@
 namespace App\Words\Domain\Repository;
 
 use App\Shared\Infrastructure\Symfony\Paginator;
-use App\Words\Domain\Entity\Word;
+use App\Words\Domain\Aggregate\Word;
 
 interface WordRepositoryInterface
 {

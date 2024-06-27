@@ -2,7 +2,7 @@
 
 namespace App\Words\Domain\Repository;
 
-use App\Words\Domain\Entity\Word;
+use App\Words\Domain\Aggregate\Word;
 
 interface LearningSessionRepositoryInterface
 {

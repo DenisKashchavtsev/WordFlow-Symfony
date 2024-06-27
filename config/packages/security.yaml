@@ -7,7 +7,7 @@ security:
     providers:
         app_user_provider:
             entity:
-                class: App\Users\Domain\Entity\User
+                class: App\Users\Domain\Aggregate\User
                 property: email
     firewalls:
         login:
@@ -32,6 +32,7 @@ security:
     access_control:
         - { path: ^/api/auth/token/login, roles: PUBLIC_ACCESS }
         - { path: ^/api/auth/token/refresh, roles: PUBLIC_ACCESS }
+        - { path: ^/api/auth/registration, roles: PUBLIC_ACCESS }
         - { path: ^/api/users/me,       roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/api/,       roles: IS_AUTHENTICATED_FULLY }
 

@@ -3,7 +3,7 @@
 namespace App\Words\Application\DTO;
 
 use App\Shared\Application\Validator\NotBlank;
-use App\Words\Domain\Entity\Category;
+use App\Words\Domain\Aggregate\Category;
 
 class CategoryDTO
 {

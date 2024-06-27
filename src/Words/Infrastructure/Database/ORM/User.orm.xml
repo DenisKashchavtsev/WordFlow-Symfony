@@ -1,0 +1,25 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\Words\Domain\Aggregate\User" table="words_user">
+        <id name="id" type="string" length="26">
+            <generator strategy="NONE"/>
+        </id>
+        <many-to-many field="categories" target-entity="App\Words\Domain\Aggregate\Category">
+            <join-table name="words_category_user">
+                <join-columns>
+                    <join-column name="category_id"/>
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="user_id"/>
+                </inverse-join-columns>
+            </join-table>
+            <cascade>
+                <cascade-all />
+            </cascade>
+        </many-to-many>
+    </entity>
+
+</doctrine-mapping>

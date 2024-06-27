@@ -14,7 +14,6 @@ use App\Words\Application\UseCase\Command\Category\UpdateCategory\UpdateCategory
 use App\Words\Application\UseCase\Query\Category\GetCategories\GetCategoriesQuery;
 use App\Words\Application\UseCase\Query\Category\GetCategory\GetCategoryQuery;
 use App\Words\Application\UseCase\Query\Category\GetCategoryWords\GetCategoryWordsQuery;
-use Symfony\Component\Serializer\SerializerInterface;
 
 class CategoryUseCaseInteractor
 {
@@ -34,6 +33,7 @@ class CategoryUseCaseInteractor
 
         return $this->queryBus->execute($query);
     }
+
     public function getCategory(string $id): CategoryDTO
     {
         $query = new GetCategoryQuery($id);

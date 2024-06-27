@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Words\Domain\Entity;
+namespace App\Words\Domain\Aggregate;
 
-use App\Shared\Domain\Entity\Aggregate;
+use App\Shared\Domain\Aggregate\Aggregate;
 use App\Shared\Domain\Service\UlidService;
 use App\Words\Domain\Event\Word\WordCreatedEvent;
 use App\Words\Domain\Event\Word\WordUpdatedEvent;
@@ -22,7 +22,7 @@ class Word extends Aggregate
     public static function create(Category $category, string $source, string $translate): self
     {
         $word = new self($category, $source, $translate);
-        $word->raiseEvent(new WordCreatedEvent($word->id));
+        $word->registerEvent(new WordCreatedEvent($word->id));
 
         return $word;
     }
@@ -32,7 +32,7 @@ class Word extends Aggregate
         $this->source = $source;
         $this->translate = $translate;
 
-        $this->raiseEvent(new WordUpdatedEvent($this->id));
+        $this->registerEvent(new WordUpdatedEvent($this->id));
 
         return $this;
     }

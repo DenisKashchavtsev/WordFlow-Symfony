@@ -2,7 +2,7 @@
 
 namespace App\Users\Domain\Service;
 
-use App\Users\Domain\Entity\User;
+use App\Users\Domain\Aggregate\User;
 
 interface UserPasswordHasherInterface
 {

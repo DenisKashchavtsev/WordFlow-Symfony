@@ -2,7 +2,7 @@
 
 namespace App\Users\Application\DTO;
 
-use App\Users\Domain\Entity\User;
+use App\Users\Domain\Aggregate\User;
 
 class UserDTO
 {
@@ -14,5 +14,4 @@ class UserDTO
     {
         return new self($user->getId(), $user->getName(), $user->getEmail());
     }
-
 }

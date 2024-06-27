@@ -4,7 +4,7 @@ namespace App\Words\Application\UseCase\Command\Word\CreateWord;
 
 use App\Shared\Application\Command\CommandHandlerInterface;
 use App\Words\Application\DTO\WordDTO;
-use App\Words\Domain\Entity\Word;
+use App\Words\Domain\Aggregate\Word;
 use App\Words\Domain\Repository\CategoryRepositoryInterface;
 use App\Words\Domain\Repository\WordRepositoryInterface;
 use Exception;

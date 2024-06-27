@@ -2,7 +2,7 @@
 
 namespace App\Words\Domain\Factory;
 
-use App\Words\Domain\Entity\User;
+use App\Words\Domain\Aggregate\User;
 
 class UserFactory
 {
